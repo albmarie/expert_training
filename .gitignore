@@ -1,0 +1,22 @@
+#Exclude everything...
+*
+!*/
+
+#...Except this file, and every .cpp, .h and .py file
+!.gitignore
+!*.py
+!*requirements.txt
+!*.sh
+!*Dockerfile
+
+#...Except everything in these folders
+!python/**
+
+#In case we re-added an undesired file, we exclude it again
+*.autosave
+*.pro.user
+*.idea
+*.jpg
+*.png
+*.pyc
+*core

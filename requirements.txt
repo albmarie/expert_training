@@ -1,0 +1,11 @@
+Pillow
+numpy==1.18.4
+torch==1.7.0
+torchvision==0.8.0 #By using latest torchvision version, resizing+crop image for CNNs gave a different result (cropped image shifted by 1 pixel horizontally) compared to before. Observed at 20/07/21 with torch==1.9.0 and torchvision==0.10.0. Probably this issue https://github.com/pytorch/vision/issues/3482
+matplotlib
+terminaltables
+tqdm
+scikit-image
+opencv-python==4.2.0.34
+pynput
+pandas
