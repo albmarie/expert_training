@@ -2,7 +2,7 @@
 *
 !*/
 
-#...Except this file, and every .cpp, .h and .py file
+#...Except this file, and few others
 !.gitignore
 !*.py
 !*requirements.txt
