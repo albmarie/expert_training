@@ -31,8 +31,8 @@ sudo singularity build singularity/expert_training_container.sif docker-daemon:/
 3 scripts are provided to reproduce main results of the paper, while keeping the code as easy as possible. These scripts are:
 
 - [run_expert_training.py](run_expert_training.py) / [expert_training.py](python/expert_training.py)
-- [run_dataset_preprocessing.py](run_dataset_preprocessing.py) / [dataset_preprocessing.py](dataset_preprocessing.py)
-- [run_stability_training.py](run_stability_training.py) / [stability_training.py](stability_training.py)
+- [run_dataset_preprocessing.py](run_dataset_preprocessing.py) / [dataset_preprocessing.py](python/dataset_preprocessing.py)
+- [run_stability_training.py](run_stability_training.py) / [stability_training.py](python/stability_training.py)
 
 Each *run_\*\*.py* script consists of the following steps:
 - Build a docker image (expert_training_container:latest), using the provided [Dockerfile](Dockerfile).
@@ -62,8 +62,8 @@ Each script expect a certain folder structure to work.
 ```
 
 - `imagenet/` folder refer to the ILSVRC12 dataset, containing all images of the 1000 classes (~1.3M).
-- `_preprocess_undistorted_output/` is a folder used by the [expert_training.py](expert_training.py) script to precompute model f output on undistorted images when using the expert training procedure. For more details, please refer to the paper and the code. At first, simply create an empty folder.
-- `_stat_compressed/` is a folder used by the [dataset_preprocessing.py](dataset_preprocessing.py) script to store rate information about preprocessed datasets. At first, simply create an empty folder.
+- `_preprocess_undistorted_output/` is a folder used by the [expert_training.py](python/expert_training.py) script to precompute model f output on undistorted images when using the expert training procedure. For more details, please refer to the paper and the code. At first, simply create an empty folder.
+- `_stat_compressed/` is a folder used by the [dataset_preprocessing.py](python/dataset_preprocessing.py) script to store rate information about preprocessed datasets. At first, simply create an empty folder.
 
 ### 1) expert_training.py
 This script is used to train an ImageNet classifier using fine-tuning or expert training. To run this script, simply use the following command line:
@@ -76,12 +76,12 @@ python3 run_expert_training.py --gpu \
 ```
 
 For more information, run `python3 run_expert_training.py -h`.
-By default, a training using the expert training procedure will be run using JPEG compression (quality 10) with ResNet50. To change the training procedure, the distortion used or classifier, please refer to the end of the [expert_training.py](expert_training.py) script to comment/uncomment any of the other provided configurations.
+By default, a training using the expert training procedure will be run using JPEG compression (quality 10) with ResNet50. To change the training procedure, the distortion used or classifier, please refer to the end of the [expert_training.py](python/expert_training.py) script to comment/uncomment any of the other provided configurations.
 
-Please note that, for some of the considered distortion in the paper (when the used codec is BPG), you will have to perform a preprocessing step using the [dataset_preprocessing.py](dataset_preprocessing.py) script first.
+Please note that, for some of the considered distortion in the paper (when the used codec is BPG), you will have to perform a preprocessing step using the [dataset_preprocessing.py](python/dataset_preprocessing.py) script first.
 
 ### 2) dataset_preprocessing.py
-This script is used to preprocess a distortion that will be used by the [expert_training.py](expert_training.py) script afterwards. To run this script, simply use the following command line:
+This script is used to preprocess a distortion that will be used by the [expert_training.py](python/expert_training.py) script afterwards. To run this script, simply use the following command line:
 
 ```
 python3 run_dataset_preprocessing.py \
@@ -95,7 +95,7 @@ What we call a preprocessing can be:
 1. **Precomputing the encoding** of a given codec at a given quality (e.g. BPG, quality 41) of all images in the ImageNet dataset (~1.3M) by saving images bitstreams on the disk
 2. **Precomputing the encoding AND the decoding** of a given codec at a given quality, by saving losslessly images that were compressed/decompressed on the disk (using .ppm image format)
 
-We recommend using the second preprocessing every time, unless you are highly limited by disk space. For more information, please refer to comments in [datasets.py](datasets.py) and at the end of [expert_training.py](expert_training.py).
+We recommend using the second preprocessing every time, unless you are highly limited by disk space. For more information, please refer to comments in [datasets.py](python/datasets.py) and at the end of [expert_training.py](python/expert_training.py).
 
 ### 3) stability_training.py
 This script is used to train an ImageNet classifier using stability training. To run this script, simply use the following command line:
