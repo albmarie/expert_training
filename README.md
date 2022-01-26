@@ -30,7 +30,7 @@ sudo singularity build singularity/expert_training_container.sif docker-daemon:/
 ## Get Started
 3 scripts are provided to reproduce main results of the paper, while keeping the code as easy as possible. These scripts are:
 
-- [run_expert_training.py](run_expert_training.py) / [expert_training.py](expert_training.py)
+- [run_expert_training.py](run_expert_training.py) / [expert_training.py](python/expert_training.py)
 - [run_dataset_preprocessing.py](run_dataset_preprocessing.py) / [dataset_preprocessing.py](dataset_preprocessing.py)
 - [run_stability_training.py](run_stability_training.py) / [stability_training.py](stability_training.py)
 
